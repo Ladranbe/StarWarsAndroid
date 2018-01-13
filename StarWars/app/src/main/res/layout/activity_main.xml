@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.benoit.starwars.main.MainActivity"
+    android:background="@color/colorPrimary"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="@string/welcomeMessage"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        android:typeface="normal"
+        android:id="@+id/welcomeTextView"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:padding="20dp"
+        android:src="@drawable/img_star_wars_back"
+        android:id="@+id/StarWarsImageView"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_centerInParent="true"
+        android:text="@string/accessButtonText"
+        tools:visibility="visible"
+        android:id="@+id/accessButton" />
+</RelativeLayout>

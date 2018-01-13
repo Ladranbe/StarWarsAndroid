@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">StarWars</string>
+    <string name="welcomeMessage">Welcome to the StarWars app !</string>
+    <string name="accessButtonText">Click here to continue</string>
+    <string name="titleText">Discover all the StarWars planets</string>
+    <string name="titleList">Planet caracteristics</string>
+    <string name="planetName">Planet Name :</string>
+    <string name="planetClimate">Climate :</string>
+    <string name="planetDiameter">Diameter :</string>
+    <string name="planetGravity">Gravity :</string>
+    <string name="planetOrbitalPeriod">Orbital period :</string>
+    <string name="planetPopulation">Population :</string>
+    <string name="planetRotationPeriod">Rotation period :</string>
+    <string name="planetTerrain">Terrain :</string>
+    <string name="planetSurfaceWater">Surface water :</string>
+    <string name="status_error">An error occured reading the data</string>
+    <string name="unknown_error">Unknown error !</string>
+</resources>
