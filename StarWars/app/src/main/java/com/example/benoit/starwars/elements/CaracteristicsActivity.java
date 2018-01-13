@@ -68,16 +68,6 @@ public class CaracteristicsActivity extends AppCompatActivity {
         TextView elementTerrain = (TextView) findViewById(R.id.elementTerrain);
         TextView elementSurfaceWater = (TextView) findViewById(R.id.elementSurfaceWater);
 
-        /*planetName.setText(planetName);
-        elementClimate.setText();
-        elementDiameter.setText();
-        elementGravity.setText();
-        elementOrbitalPeriod.setText();
-        elementPopulation.setText();
-        elementRotationPeriod.setText();
-        elementTerrain.setText();
-        elementSurfaceWater.setText();*/
-
         planetName.setText(" "+planet.getName());
         elementClimate.setText(" "+planet.getClimate());
         elementDiameter.setText(" "+planet.getDiameter());
