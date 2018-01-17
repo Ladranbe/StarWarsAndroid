@@ -14,8 +14,4 @@ public class ResultList implements Serializable{
     public String next;
     public String previous;
     public ArrayList<Planet> results;
-
-    public boolean hasMore() {
-        return !TextUtils.isEmpty(next);
-    }
 }

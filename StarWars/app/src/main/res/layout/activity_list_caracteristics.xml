@@ -188,4 +188,10 @@
             android:paddingTop="15dp"
             android:id="@+id/elementSurfaceWater"/>
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_star_wars_space"/>
 </LinearLayout>

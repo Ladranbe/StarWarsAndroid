@@ -33,8 +33,6 @@ import static com.example.benoit.starwars.elements.ElementsActivity.PLANET_CARAC
 public class CaracteristicsActivity extends AppCompatActivity {
 
 
-    public static final int REQUEST_CODE_PLANET_ID = 1;
-
     public static Intent getStartIntent(final Context context) {
         return new Intent(context, CaracteristicsActivity.class);
     }

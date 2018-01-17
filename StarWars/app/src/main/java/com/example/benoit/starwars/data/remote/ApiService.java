@@ -20,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -36,8 +37,8 @@ public interface ApiService {
     @GET(BASE_URL)
     Call<ResultList> readResults();
 
-    @GET("/planets/{id}/")
-    public void getPlanet(@Path("id") int id, Callback<Planet> planetCallback);
+    @GET("https://swapi.co/api/planets/")
+    Call<ResultList> getPage(@Query("page") int page);
 
     class Builder {
         /**
@@ -72,7 +73,7 @@ public interface ApiService {
                     .build();
 
             return new Retrofit.Builder()
-                    .baseUrl("https://us-central1-eseo-course.cloudfunctions.net")
+                    .baseUrl("https://swapi.co")
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()

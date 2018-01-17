@@ -30,12 +30,13 @@ import retrofit2.Response;
 
 public class ElementsActivity extends AppCompatActivity {
 
+    private static final int NUMBER_OF_PLANETS_PER_PAGE = 10;
+    private static final int TOTAL_NUMBER_OF_PLANETS = 61;
     private final ApiService apiService = ApiService.Builder.getInstance(); //singleton
 
     public static final String PLANET_CARACTERISTICS = "PLANET_CARACTERISTICS";
     private ElementAdapter elementsAdapter;
     private final List<Planet> listOfPlanets = new ArrayList<>();
-    private ResultList resultList = null;
 
     public static Intent getStartIntent(final Context context) {
         return new Intent(context, ElementsActivity.class);
@@ -51,31 +52,34 @@ public class ElementsActivity extends AppCompatActivity {
         elementsAdapter = new ElementAdapter(this, listOfPlanets, planetSelectedListener);
         planets.setAdapter(elementsAdapter);
 
-        Log.d("DEBUG_TAG", "Start request");
-        apiService.readResults().enqueue(new Callback <ResultList>() {
-            @Override
-            public void onResponse(final Call<ResultList> call, final Response<ResultList> response) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        handleResponse(response);
-                    }
-                });
-            }
+        listOfPlanets.clear();
 
-            @Override
-            public void onFailure(final Call<ResultList> call, final Throwable t) {
-                t.printStackTrace();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(ElementsActivity.this, R.string.status_error, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+        for(int i=1; i<=(TOTAL_NUMBER_OF_PLANETS/NUMBER_OF_PLANETS_PER_PAGE);i++) {
+            apiService.getPage(i).enqueue(new Callback<ResultList>() {
+                @Override
+                public void onResponse(final Call<ResultList> call, final Response<ResultList> response) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            handleResponse(response);
+                        }
+                    });
+                }
+
+                @Override
+                public void onFailure(final Call<ResultList> call, final Throwable t) {
+                    t.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ElementsActivity.this, R.string.status_error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        }
     }
-    
+
     /*
      * Triggered when an item of the listView is clicked
      */
@@ -89,8 +93,8 @@ public class ElementsActivity extends AppCompatActivity {
         }
     };
 
-    private void updateDevices (final List<Planet> planets){
-        listOfPlanets.clear();
+    private void updateList (final List<Planet> planets){
+        //listOfPlanets.clear();
         if (planets != null && planets.size() > 0){
             listOfPlanets.addAll(planets);
             elementsAdapter.notifyDataSetChanged();
@@ -102,7 +106,7 @@ public class ElementsActivity extends AppCompatActivity {
     private void handleResponse(final Response<ResultList> response){
         if (response.isSuccessful()) {
             ResultList resultList = (ResultList) response.body();
-            updateDevices(resultList.results);
+            updateList(resultList.results);
         } else { // error HTTP
             try {
                 final HttpError error = new Gson().fromJson(response.errorBody().string(), HttpError.class);
